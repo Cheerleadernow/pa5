@@ -1,5 +1,5 @@
 
-#Computer attempts to guess a number you choose between 1 and 100 in 10 tries
+#Computer attempts to guess a number you choose between any intergers
 answer = 'yes'
 print()
 print ("Enter two numbers, low then high..")
