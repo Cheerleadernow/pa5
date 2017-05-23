@@ -1,72 +1,48 @@
 
-#Computer attempts to guess a number you choose between any intergers
+#------------------------------------------------------------------------------
+# Question.py
+#Programming Assignment 5
+#Computer attempts to guess a number you choose between given integers,Reads a two positive integers n from user input, then #guesses the number user is thinking.
+#------------------------------------------------------------------------------
+
+## Parameters 
+
 answer = 'yes'
 print()
-print ("Enter two numbers, low then high..")
-LimitLow = int(input(" lower limit :  "))
-LimitHigh = int(input(" upper limit:  "))
+print ("Enter two numbers, low then high.")
+LimitLow = int(input(" low =  "))
+LimitHigh = int(input(" high =  "))
 NumToGuess = [(LimitLow + LimitHigh)//2]
-print("Low = {}".format(LimitLow))
-print("High = {}".format(LimitHigh))
+
+print ()
+
 print ("Think of a number in the range {} to {}. " .format(LimitLow, LimitHigh ))
-print ("Is your number Less than, Greater than, or Equal to {}?  ".format(NumToGuess))
-#response = input()
+print ()
 
-response = input(" Type 'L', 'G' or 'E': ")
-
-
-def BinSearch(x, L):
-   left = 0
-   right = len(L)-1
-   while left<=right:   # search space is not empty
-      m = (left+right)//2
-      if x == L[m]:
-         return m
-      elif x < L[m]:
-         right = m-1
-      else:  #  L[m] < x 
-         left = m+1
-			
-
-while answer == "yes":
-    NumOfTry = 10
+NumOfTry = 0	
+while LimitLow <= LimitHigh:
+    NumOfTry += 1
     NumToGuess = (LimitLow+LimitHigh)//2
-    while NumOfTry != 0:
-        try:
-            print ("Is your number Less than, Greater than, or Equal to {}?  ".format(NumToGuess))
-            print ("Please type: 'L', 'G' or 'E':")
-         
-            response  = int (input("So did I guess right?"))
-            if 1 < response > 3:
-                print ("Please enter a valid answer. 1, 2 and 3 are the valid choice")
-                NumOfTry = NumOfTry + 1
-            if response == 1:
-                LimitHigh = NumToGuess
-                print ("Hmm, so your number is between ",LimitLow, "and ", LimitHigh)
-                NumOfTry = NumOfTry - 1
-                print (NumOfTry, "attempts left")
-                NumToGuess = int (((LimitHigh - LimitLow)/2) + LimitLow)
-                if NumToGuess <= LimitLow:
-                    NumToGuess = NumToGuess + 1
-                if LimitHigh - LimitLow == 2:
-                    NumToGuess = LimitLow + 1
-            elif response == 2:
-                LimitLow = NumToGuess
-                print ("Hmm, so your number is between ",LimitLow, "and ", LimitHigh)
-                NumOfTry = NumOfTry - 1
-                print (NumOfTry, "attempts left")
-                NumToGuess = int (((LimitHigh - LimitLow)/2) + LimitLow)
-                if NumToGuess <= LimitLow:
-                    NumToGuess = NumToGuess + 1
-                if LimitHigh - LimitLow == 2:
-                    NumToGuess = LimitLow + 1
-            elif response == 3:
-                print ("Woo hoo! I won")
-                NumOfTry = 0
-        except:
-            break
-    else:
-        answer = input ('Do you want to play again? (yes/no)')
+	
+    print("Is your number Less than, Greater than, or Equal to {}? \n " .format(NumToGuess))
+response = input ("Type 'G', 'L' or 'E': ").upper()		
+while response != "E" and response != "G" and response != "L":
+	    response = input ("Please type 'G', 'L' or 'E': ").upper()
+if response == "L":
+		LimitHigh = NumToGuess - 1
+	 
+elif response == "G":
+		LimitLow = NumToGuess + 1
+	   
+elif response == "E":
+	break
 
-else:
-    print ("Thank you for playing. Goodbye")
+if high < low:
+    print ('Your answers have not been consistent.')
+
+else :
+        if response == "E":
+	        print('I found your number in  {}'.format(NumToTry))	
+                
+			elif :
+    print('Your number is {}. I found it in {} guesses.' .format( NumToGuess, NumOfTry))
