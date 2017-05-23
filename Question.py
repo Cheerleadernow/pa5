@@ -1,56 +1,72 @@
-print ("Please think of a number between 0 and 100!")
+
+#Computer attempts to guess a number you choose between any intergers
+answer = 'yes'
+print()
+print ("Enter two numbers, low then high..")
+LimitLow = int(input(" lower limit :  "))
+LimitHigh = int(input(" upper limit:  "))
+NumToGuess = [(LimitLow + LimitHigh)//2]
+print("Low = {}".format(LimitLow))
+print("High = {}".format(LimitHigh))
+print ("Think of a number in the range {} to {}. " .format(LimitLow, LimitHigh ))
+print ("Is your number Less than, Greater than, or Equal to {}?  ".format(NumToGuess))
+#response = input()
+
+response = input(" Type 'L', 'G' or 'E': ")
 
 
-low = int(input("Enter the n two integers giving the lower limits respectively:  "))
-high = int(input("Enter the n two integers giving the upper limits respectively:  "))
-Responses = ''
-Bounds = random.randint(low,high)
-guess =  Bounds
+def BinSearch(x, L):
+   left = 0
+   right = len(L)-1
+   while left<=right:   # search space is not empty
+      m = (left+right)//2
+      if x == L[m]:
+         return m
+      elif x < L[m]:
+         right = m-1
+      else:  #  L[m] < x 
+         left = m+1
+			
 
-while response != "c":
-    
-     Guesses = []
-     i = 0
-     response = input()
-
-while (len(Guesses) < n):
-    
-	if (isPrime(i, Guesses)):
-            Guesses.append(i)
-            i += 1
-    
-	return (Guesses)
-	
-	print ("Is it ", Bounds, " ?")
-
-	if response == "h":
-			lowBound = Bounds + 1   
-			Bounds = random.randint(lowBound,highBound)
-			elif response == "l":
-			highBound = Bounds - 1
-			Bounds = random.randint(lowBound,highBound)
-		    elif response == "c":
-			print ("Your number is. I found it in 3 guesses. '")
-			break
-		    else:
-			print ('Huh? "h", "l", or "c" are valid responses.')
-			print (Guesses)
-
-if response == "c":
-
-        print ("Your number is + str(Guesses). I found it in str(Guesses[0]) guesses. ")    
-       
-	   while True:
-    print ("Is your secret number " + str(guess) + "?")
-    Responses = input("Enter 'h' to indicate the guess is too high. Enter 'l' to indicate the guess is too low. Enter 'c' to indicate I guessed correctly. ")
-    if (Responses == 'c'):
-        print ("Game over. Your secret number was: " + str(guess),)
-        break;
-    elif (Responses == 'l'):
-        low = guess
-    elif (Responses == 'h'):
-        high = guess
+while answer == "yes":
+    NumOfTry = 10
+    NumToGuess = (LimitLow+LimitHigh)//2
+    while NumOfTry != 0:
+        try:
+            print ("Is your number Less than, Greater than, or Equal to {}?  ".format(NumToGuess))
+            print ("Please type: 'L', 'G' or 'E':")
+         
+            response  = int (input("So did I guess right?"))
+            if 1 < response > 3:
+                print ("Please enter a valid answer. 1, 2 and 3 are the valid choice")
+                NumOfTry = NumOfTry + 1
+            if response == 1:
+                LimitHigh = NumToGuess
+                print ("Hmm, so your number is between ",LimitLow, "and ", LimitHigh)
+                NumOfTry = NumOfTry - 1
+                print (NumOfTry, "attempts left")
+                NumToGuess = int (((LimitHigh - LimitLow)/2) + LimitLow)
+                if NumToGuess <= LimitLow:
+                    NumToGuess = NumToGuess + 1
+                if LimitHigh - LimitLow == 2:
+                    NumToGuess = LimitLow + 1
+            elif response == 2:
+                LimitLow = NumToGuess
+                print ("Hmm, so your number is between ",LimitLow, "and ", LimitHigh)
+                NumOfTry = NumOfTry - 1
+                print (NumOfTry, "attempts left")
+                NumToGuess = int (((LimitHigh - LimitLow)/2) + LimitLow)
+                if NumToGuess <= LimitLow:
+                    NumToGuess = NumToGuess + 1
+                if LimitHigh - LimitLow == 2:
+                    NumToGuess = LimitLow + 1
+            elif response == 3:
+                print ("Woo hoo! I won")
+                NumOfTry = 0
+        except:
+            break
     else:
-        print ("Sorry, I did not understand your input.")
-        continue
-guess = (low + high)/2
+        answer = input ('Do you want to play again? (yes/no)')
+
+else:
+    print ("Thank you for playing. Goodbye")
