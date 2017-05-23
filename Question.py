@@ -1,56 +1,48 @@
-print ("Please think of a number between 0 and 100!")
 
+#------------------------------------------------------------------------------
+# Question.py
+#Programming Assignment 5
+#Computer attempts to guess a number you choose between given integers,Reads a two positive integers n from user input, then #guesses the number user is thinking.
+#------------------------------------------------------------------------------
 
-low = int(input("Enter the n two integers giving the lower limits respectively:  "))
-high = int(input("Enter the n two integers giving the upper limits respectively:  "))
-Responses = ''
-Bounds = random.randint(low,high)
-guess =  Bounds
+## Parameters 
 
-while response != "c":
-    
-     Guesses = []
-     i = 0
-     response = input()
+answer = 'yes'
+print()
+print ("Enter two numbers, low then high.")
+LimitLow = int(input(" low =  "))
+LimitHigh = int(input(" high =  "))
+NumToGuess = [(LimitLow + LimitHigh)//2]
 
-while (len(Guesses) < n):
-    
-	if (isPrime(i, Guesses)):
-            Guesses.append(i)
-            i += 1
-    
-	return (Guesses)
+print ()
+
+print ("Think of a number in the range {} to {}. " .format(LimitLow, LimitHigh ))
+print ()
+
+NumOfTry = 0	
+while LimitLow <= LimitHigh:
+    NumOfTry += 1
+    NumToGuess = (LimitLow+LimitHigh)//2
 	
-	print ("Is it ", Bounds, " ?")
+    print("Is your number Less than, Greater than, or Equal to {}? \n " .format(NumToGuess))
+response = input ("Type 'G', 'L' or 'E': ").upper()		
+while response != "E" and response != "G" and response != "L":
+	    response = input ("Please type 'G', 'L' or 'E': ").upper()
+if response == "L":
+		LimitHigh = NumToGuess - 1
+	 
+elif response == "G":
+		LimitLow = NumToGuess + 1
+	   
+elif response == "E":
+	break
 
-	if response == "h":
-			lowBound = Bounds + 1   
-			Bounds = random.randint(lowBound,highBound)
-			elif response == "l":
-			highBound = Bounds - 1
-			Bounds = random.randint(lowBound,highBound)
-		    elif response == "c":
-			print ("Your number is. I found it in 3 guesses. '")
-			break
-		    else:
-			print ('Huh? "h", "l", or "c" are valid responses.')
-			print (Guesses)
+if high < low:
+    print ('Your answers have not been consistent.')
 
-if response == "c":
-
-        print ("Your number is + str(Guesses). I found it in str(Guesses[0]) guesses. ")    
-       
-	   while True:
-    print ("Is your secret number " + str(guess) + "?")
-    Responses = input("Enter 'h' to indicate the guess is too high. Enter 'l' to indicate the guess is too low. Enter 'c' to indicate I guessed correctly. ")
-    if (Responses == 'c'):
-        print ("Game over. Your secret number was: " + str(guess),)
-        break;
-    elif (Responses == 'l'):
-        low = guess
-    elif (Responses == 'h'):
-        high = guess
-    else:
-        print ("Sorry, I did not understand your input.")
-        continue
-guess = (low + high)/2
+else :
+        if response == "E":
+	        print('I found your number in  {}'.format(NumToTry))	
+                
+			elif :
+    print('Your number is {}. I found it in {} guesses.' .format( NumToGuess, NumOfTry))
